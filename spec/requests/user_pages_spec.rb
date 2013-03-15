@@ -45,4 +45,12 @@ describe "UserPages" do
     end
   end
 
+  # describe "with valid information" do
+  #   before { visit root_path }
+    
+  #   describe "after saving the user" do
+  #     it { should have_link('Sign out') }
+  #   end
+  # end
+
 end
