@@ -24,12 +24,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-    if @user.save
-      # Handle a successful save.
-      redirect_to @user
-    else
-      render 'new'
-    end
   end
 
   # GET /users/1/edit
