@@ -8,6 +8,9 @@ Mume::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  #OmniAuth
+  match "/auth/:provider/callback" => "sessions#callback"
+
 
   resources :microposts, only: [:create, :destroy]
   resources :users do

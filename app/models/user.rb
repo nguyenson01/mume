@@ -48,6 +48,24 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  def self.create_with_omniauth(auth)
+    create!do |user|
+      case auth["provider"]
+      when "facebook"
+        user.email = auth["info"]["email"]
+        user.nickname = "mume"
+      else
+        user.email = auth["info"]["nickname"] + "@mume.com"
+        user.nickname = auth["info"]["nickname"]
+      end
+      
+      user.provider = auth["provider"]
+      user.name = auth["info"]["name"]
+      user.password = user.email
+      user.password_confirmation = user.email
+    end
+  end
+
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
